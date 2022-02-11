@@ -13,20 +13,49 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
+
       Root: {
         screens: {
-          TabOne: {
+
+          // TabOne: {
+          //   screens: {
+          //     TabOneScreen: 'one',
+          //   },
+          // },
+
+          // TabTwo: {
+          //   screens: {
+          //     TabTwoScreen: 'two',
+          //   },
+          // },
+
+          Home:{
             screens: {
-              TabOneScreen: 'one',
+              HomeScreen: 'HomeScreen',
             },
           },
-          TabTwo: {
+
+          Order:{
             screens: {
-              TabTwoScreen: 'two',
+              OrderScreen: 'OrderScreen',
             },
           },
+
+          Account:{
+            screens: {
+              AccountScreen: 'AccountScreen',
+            },
+          },
+
+          Products:{
+            screens: {
+              ProductsScreen: 'ProductsScreen',
+            },
+          },
+
         },
       },
+
       Modal: 'modal',
       NotFound: '*',
     },

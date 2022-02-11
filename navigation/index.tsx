@@ -4,16 +4,21 @@
  *
  */
 import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Colors from '../constants/Colors';
+import Colors, { purpleDark, purpleLight, purpleLightest } from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import AccountScreen from '../screens/AccountScreen';
+import HomeScreen from '../screens/HomeScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import OrderScreen from '../screens/OrderScreen';
+import ProductsScreen from '../screens/ProductScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -37,6 +42,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
+
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
@@ -53,22 +59,38 @@ function RootNavigator() {
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
+
+
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  // const tabBarHeight = 
 
   return (
+
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
-        // tabBarActiveTintColor: Colors[colorScheme].tint,
-        tabBarActiveTintColor: 'red',
-      }}>
+        tabBarActiveTintColor: purpleDark,
+        // tabBarActiveBackgroundColor:purpleLight,
+        tabBarStyle: { minHeight: 80, paddingTop: 10, paddingBottom: 5 },
+        tabBarLabelStyle: {
+          fontWeight: 'bold',
+          fontSize: 14,
+        },
+
+      }}
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        name="Home"
+        component={HomeScreen}
+        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+          title: 'Home',
+          headerShown: false,
+          tabBarIconStyle: {
+            backgroundColor: 'lightgrey',
+          },
+
+          tabBarIcon: ({ color, focused }) => <TabBarIcon name="home" color={color} active={focused} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -86,11 +108,39 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Order"
+        component={OrderScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: 'Order',
+          tabBarBadge: 3,
+          tabBarBadgeStyle: {
+            backgroundColor: 'red',
+            marginTop: -5,
+            marginLeft: 5,
+          },
+
+          tabBarIcon: ({ color, focused }) => <TabBarIcon name="code" color={color} active={focused} />,
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Products"
+        component={ProductsScreen}
+        options={{
+          headerShown: false,
+          title: 'Products',
+          tabBarIcon: ({ color, focused }) => <TabBarIcon name="code" color={color} active={focused} />,
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Account',
+          tabBarIcon: ({ color, focused }) => <TabBarIcon name="user-circle-o" color={color} active={focused} />,
         }}
       />
     </BottomTab.Navigator>
@@ -100,9 +150,22 @@ function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
+
+type TabBarIconProps = {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  active?: boolean;
+}
+function TabBarIcon(props: TabBarIconProps) {
+  return <View
+    style={{
+      backgroundColor: props.active ? purpleLightest : '',
+      height: '80%',
+      width: 36,
+      borderRadius: 50,
+      justifyContent: 'center',
+      alignItems: 'center'}}>
+    <FontAwesome size={20} {...props} />
+  </View>
+
 }
