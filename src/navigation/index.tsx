@@ -12,12 +12,10 @@ import { FC } from 'react';
 import { ColorSchemeName,  View } from 'react-native';
 
 import { Colors } from '../constants/Colors';
-import AccountScreen from '../screens/account/AccountScreen';
-import HomeScreen from '../screens/home/HomeScreen';
-import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
-import OrderScreen from '../screens/order/OrderScreen';
-import ProductsScreen from '../screens/products/ProductScreen';
+import {AccountScreen} from '../screens/account/AccountScreen';
+import {HomeScreen} from '../screens/home/HomeScreen';
+import {OrderScreen} from '../screens/order/OrderScreen';
+import {ProductsScreen} from '../screens/products/ProductScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -42,10 +40,10 @@ function RootNavigator() {
 
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      {/* <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
+      </Stack.Group> */}
     </Stack.Navigator>
   );
 }
@@ -62,7 +60,7 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Account"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: Colors.purpleDark,
         tabBarStyle: { minHeight: 80, paddingTop: 10, paddingBottom: 5 },

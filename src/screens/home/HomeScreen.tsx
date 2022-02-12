@@ -2,12 +2,13 @@ import { FontAwesome } from '@expo/vector-icons';
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { withLayout } from '../../components/withLayout';
 import { Colors, Sizes } from '../../constants/Colors';
-import HomeContent from './HomeContent';
+import {HomeContent} from './HomeContent';
 
 interface HomeScreenProps { }
 
-const HomeScreen = (props: HomeScreenProps) => {
+export const HomeScreen = (props: HomeScreenProps) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.purpleDark }}>
       <View style={styles.container}>
@@ -19,7 +20,6 @@ const HomeScreen = (props: HomeScreenProps) => {
 
           <View style={styles.bottomHeader}>
             <Text style={styles.text}>https://store.sellde.cloud</Text>
-
             <View style={styles.shareButton}>
               <Text style={styles.textButton}>Share</Text>
             </View>
@@ -27,18 +27,17 @@ const HomeScreen = (props: HomeScreenProps) => {
         </View>
 
         <View style={styles.homeContent}>
-          <HomeContent/>
+          <HomeContent />
         </View>
-        
+
       </View>
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: Colors.purpleLight
   },
@@ -95,5 +94,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
 
-  
+
 });

@@ -7,7 +7,7 @@ import { ListTabsView } from '../products/ListTabsView';
 
 
 
-const OrderScreen = () => {
+export const OrderScreen = () => {
   const [input,setInput] = React.useState()
 
 
@@ -20,12 +20,14 @@ const OrderScreen = () => {
       > */}
       <View style={styles.container}>
 
+
         <View style={styles.homeHeader}>
           <View style={styles.boxIcon}>
             <MaterialCommunityIcons size={25} name="clipboard-text-outline" color={Colors.purpleLight} />
           </View>
           <Text style={styles.textHeader}>All Order (0)</Text>
         </View>
+
 
         <View style={styles.homeContent}>
           <View style={styles.searchBox} >
@@ -38,8 +40,10 @@ const OrderScreen = () => {
               placeholderTextColor={Colors.gray}
             />
           </View>
+          
           <ListTabsView />
         </View>
+
         
       </View>
       {/* </KeyboardAvoidingView> */}
@@ -47,7 +51,6 @@ const OrderScreen = () => {
   );
 };
 
-export default OrderScreen;
 
 const styles = StyleSheet.create({
   container: {

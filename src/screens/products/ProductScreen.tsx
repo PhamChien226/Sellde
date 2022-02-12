@@ -6,10 +6,11 @@ import { Colors, Sizes } from '../../constants/Colors';
 
 interface ProductsScreenProps { }
 
-const ProductsScreen = (props: ProductsScreenProps) => {
+export const ProductsScreen = (props: ProductsScreenProps) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.purpleDark }}>
       <View style={styles.container}>
+
 
         <View style={styles.homeHeader}>
           <View style={styles.boxIcon}>
@@ -18,24 +19,20 @@ const ProductsScreen = (props: ProductsScreenProps) => {
 
           <View style={styles.bottomHeader}>
             <Text style={styles.textHeader}>Catalogue</Text>
-
             <View style={styles.shareButton}>
               <Text style={styles.textButton}>Add Product</Text>
             </View>
           </View>
-
-
-        </View>  
-
-        <View style={styles.homeContent}>
-
         </View>
+
+        <View style={styles.homeContent} />
+
+
       </View>
     </SafeAreaView>
   );
 };
 
-export default ProductsScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
 
-  
+
 
   bottomHeader: {
     position: 'absolute',
@@ -96,6 +93,6 @@ const styles = StyleSheet.create({
   textHeader: {
     fontSize: Sizes.header,
     color: Colors.white,
-    marginLeft:15,
+    marginLeft: 15,
   },
 });

@@ -7,10 +7,12 @@ import { Colors, Sizes } from '../../constants/Colors';
 
 interface AccountScreenProps { }
 
-const AccountScreen = (props: AccountScreenProps) => {
+export const AccountScreen = (props: AccountScreenProps) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.purpleDark }}>
       <View style={styles.container}>
+
+
         <View style={styles.homeHeader}>
           <View style={styles.boxIcon}>
             <FontAwesome size={35} name="home" color={Colors.purpleLight} />
@@ -19,9 +21,8 @@ const AccountScreen = (props: AccountScreenProps) => {
           <View style={styles.shareButton}>
             <Text style={styles.textButton}>Update</Text>
           </View>
-
-
         </View>
+
 
         <View style={styles.homeContent}>
           <View style={styles.sectionWrapper}>
@@ -45,13 +46,11 @@ const AccountScreen = (props: AccountScreenProps) => {
               label="How to use app"
               icon={<Feather name="box" size={20} color={Colors.white} />}
             />
-
             <ButtonBar
               label="Support Buyer via Zalo"
               icon={<Feather name="box" size={20} color={Colors.white} />}
               isSwitch={true}
             />
-
             <ButtonBar
               label="Language"
               icon={<Feather name="box" size={20} color={Colors.white} />}
@@ -65,7 +64,6 @@ const AccountScreen = (props: AccountScreenProps) => {
   );
 };
 
-export default AccountScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -80,7 +78,8 @@ const styles = StyleSheet.create({
   homeContent: {
     flex: 2,
     backgroundColor: Colors.white,
-    padding: 15,
+    paddingHorizontal: 15,
+
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
   },
@@ -117,9 +116,8 @@ const styles = StyleSheet.create({
   sectionWrapper: {
     borderRadius: 5,
     paddingHorizontal: 15,
-    paddingVertical: 3,
     backgroundColor: 'white',
-    marginBottom: 20,
+    marginTop: 20,
 
     shadowColor: "#000",
     shadowOffset: {

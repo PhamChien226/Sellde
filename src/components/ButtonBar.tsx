@@ -17,28 +17,29 @@ export const ButtonBar = (props: ButtonBarProps) => {
 
   return (
     <Pressable style={styles.sectionItem} onPress={() => console.warn("onPress")}>
+
       <View style={styles.sectionIconWrapper}>
         {props.icon}
       </View>
+
       <View style={styles.sectionTextWrapper}>
         <Text style={styles.sectionLabel}>{props.label}</Text>
         {props.extraInfo ? <Text style={styles.sectionSmallText}>{props.extraInfo}</Text> : null}
       </View>
-      {
-        props.isSwitch ?
-          <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            // thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            thumbColor={"#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            // onValueChange={()=> }
-            // value={false}
-          />
-          : <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.gray} />
+
+      {props.isSwitch ?
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          // thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+          thumbColor={"#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+        // onValueChange={()=> }
+        // value={false}
+        />
+        : <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.gray} />
       }
 
     </Pressable>
-
   );
 };
 
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   sectionTextWrapper: {
     flex: 1,
     marginLeft: 10,
-    textAlign:'center'
+    textAlign: 'center'
   },
 
   sectionLabel: {

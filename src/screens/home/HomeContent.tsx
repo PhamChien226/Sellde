@@ -1,28 +1,27 @@
 import { Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions } from 'react-native'
+import { BoxOverview } from '../../components/BoxOverview';
 import { Colors, Sizes } from '../../constants/Colors';
 
-interface HomeContentProps { }
 
+const data: any = [
+    {
+        icon: <MaterialCommunityIcons name="clipboard-check-outline" size={20} color={Colors.purpleDark} />,
+        total: 0,
+        label: "Total View"
+    },
+    {
+        icon: <Feather name="box" size={22} color={Colors.purpleDark} />,
+        total: 0,
+        label: "Total Completed"
+    }
+]
 
-const HomeContent = (props: HomeContentProps) => {
-
-    const data: any = [
-        {
-            icon: <MaterialCommunityIcons name="clipboard-check-outline" size={20} color={Colors.purpleDark} />,
-            total: 0,
-            label: "Total View"
-        },
-        {
-            icon: <Feather name="box" size={22} color={Colors.purpleDark} />,
-            total: 0,
-            label: "Total Completed"
-        }
-    ]
+export const HomeContent = () => {
 
     return (
-        <View >
+        <View>
             <View style={styles.section}>
                 <Text style={styles.sectionLabel}>OverView</Text>
                 <View style={styles.sectionTimeContainer}>
@@ -34,18 +33,9 @@ const HomeContent = (props: HomeContentProps) => {
             <FlatList
                 data={data}
                 horizontal={true}
-                renderItem={({ item, index }) => {
-                    return (
-                        <View key={index} style={styles.boxOverview}>
-                            <View style={styles.boxIcon}>
-                                {item.icon}
-                            </View>
-
-                            <Text style={styles.number}>{item.total}</Text>
-                            <Text style={styles.label}>{item.label}</Text>
-                        </View>
-                    )
-                }}
+                renderItem={({ item, index }) => (
+                    <BoxOverview key={index} icon={item.icon} total={item.total} label={item.label} />
+                )}
             />
 
 
@@ -54,15 +44,13 @@ const HomeContent = (props: HomeContentProps) => {
     )
 };
 
-export default HomeContent;
-
 const styles = StyleSheet.create({
     section: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
         marginBottom: 10,
-        marginTop:20,
+        marginTop: 20,
     },
     sectionLabel: {
         fontSize: Sizes.textLarge,
