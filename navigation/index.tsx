@@ -4,14 +4,14 @@
  *
  */
 import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator, useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
+import { FC } from 'react';
 import { ColorSchemeName, Pressable, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Colors, { purpleDark, purpleLight, purpleLightest } from '../constants/Colors';
+import {Colors} from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -19,8 +19,6 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import OrderScreen from '../screens/OrderScreen';
 import ProductsScreen from '../screens/ProductScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -70,9 +68,10 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: purpleDark,
+        tabBarActiveTintColor: Colors.purpleDark,
         // tabBarActiveBackgroundColor:purpleLight,
         tabBarStyle: { minHeight: 80, paddingTop: 10, paddingBottom: 5 },
+        
         tabBarLabelStyle: {
           fontWeight: 'bold',
           fontSize: 14,
@@ -91,20 +90,20 @@ function BottomTabNavigator() {
           },
 
           tabBarIcon: ({ color, focused }) => <TabBarIcon name="home" color={color} active={focused} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+          // headerRight: () => (
+          //   <Pressable
+          //     onPress={() => navigation.navigate('Modal')}
+          //     style={({ pressed }) => ({
+          //       opacity: pressed ? 0.5 : 1,
+          //     })}>
+          //     <FontAwesome
+          //       name="info-circle"
+          //       size={25}
+          //       // color={Colors[colorScheme].text}
+          //       style={{ marginRight: 15 }}
+          //     />
+          //   </Pressable>
+          // ),
         })}
       />
       <BottomTab.Screen
@@ -156,13 +155,16 @@ type TabBarIconProps = {
   color: string;
   active?: boolean;
 }
-function TabBarIcon(props: TabBarIconProps) {
+// function TabBarIcon(props: TabBarIconProps) {
+const TabBarIcon:FC <TabBarIconProps> = (props) => {
   return <View
     style={{
-      backgroundColor: props.active ? purpleLightest : '',
-      height: '80%',
-      width: 36,
+      backgroundColor: props.active ? Colors.purpleLightest : '',
+      height: '100%',
+      width: 45,
+
       borderRadius: 50,
+      // flex:1,
       justifyContent: 'center',
       alignItems: 'center'}}>
     <FontAwesome size={20} {...props} />

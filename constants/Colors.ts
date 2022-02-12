@@ -1,8 +1,23 @@
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
-export const purpleDark = "#3F51B5";
-export const purpleLight = "#4642D4";
-export const purpleLightest = "#E2E3F8";
+
+
+const Colors = {
+  white: 'white',
+  purpleDark: "#4642D4",
+  purpleLight: "#3F51B5",
+  purpleLightest: "#E2E3F8",
+  orange: "#FF7F5F",
+  gray:'#9394A6'
+}
+
+const Sizes = {
+  textSmall:14,
+  textMedium:16,
+  textLarge:18,
+  textLargest:22,
+  header:28,
+}
 
 export default {
   light: {
@@ -19,5 +34,10 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
   },
-  
+
 };
+
+export{
+  Colors,
+  Sizes,
+}
