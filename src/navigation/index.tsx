@@ -9,17 +9,16 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { FC } from 'react';
-import { ColorSchemeName, Pressable, View } from 'react-native';
+import { ColorSchemeName,  View } from 'react-native';
 
 import { Colors } from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import AccountScreen from '../screens/AccountScreen';
-import HomeScreen from '../screens/HomeScreen';
+import AccountScreen from '../screens/account/AccountScreen';
+import HomeScreen from '../screens/home/HomeScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import OrderScreen from '../screens/OrderScreen';
-import ProductsScreen from '../screens/ProductScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import OrderScreen from '../screens/order/OrderScreen';
+import ProductsScreen from '../screens/products/ProductScreen';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, useWindowDimensions, Pressable, ScrollView } from 'react-native';
 import { TabView } from 'react-native-tab-view';
-import { Colors, Sizes } from '../constants/Colors';
+import { Colors, Sizes } from '../../constants/Colors';
 
 
 const renderScene = ({ route, jumpTo }) => {

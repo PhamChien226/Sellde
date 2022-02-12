@@ -2,8 +2,8 @@ import { FontAwesome, MaterialCommunityIcons, MaterialIcons } from '@expo/vector
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors, Sizes } from '../constants/Colors';
-import { ListTabsView } from './ListTabsView';
+import { Colors, Sizes } from '../../constants/Colors';
+import { ListTabsView } from '../products/ListTabsView';
 
 
 
