@@ -22,7 +22,7 @@ const HomeContent = (props: HomeContentProps) => {
     ]
 
     return (
-        <View style={styles.container}>
+        <View >
             <View style={styles.section}>
                 <Text style={styles.sectionLabel}>OverView</Text>
                 <View style={styles.sectionTimeContainer}>
@@ -57,12 +57,12 @@ const HomeContent = (props: HomeContentProps) => {
 export default HomeContent;
 
 const styles = StyleSheet.create({
-    container: {},
     section: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop:20,
     },
     sectionLabel: {
         fontSize: Sizes.textLarge,

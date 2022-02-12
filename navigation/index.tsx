@@ -11,7 +11,7 @@ import * as React from 'react';
 import { FC } from 'react';
 import { ColorSchemeName, Pressable, View } from 'react-native';
 
-import {Colors} from '../constants/Colors';
+import { Colors } from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -60,23 +60,19 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-  // const tabBarHeight = 
 
   return (
-
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Account"
       screenOptions={{
         tabBarActiveTintColor: Colors.purpleDark,
-        // tabBarActiveBackgroundColor:purpleLight,
         tabBarStyle: { minHeight: 80, paddingTop: 10, paddingBottom: 5 },
-        
+
         tabBarLabelStyle: {
           fontWeight: 'bold',
           fontSize: 14,
         },
-
+        tabBarHideOnKeyboard: true,
       }}
     >
       <BottomTab.Screen
@@ -112,7 +108,7 @@ function BottomTabNavigator() {
         options={{
           headerShown: false,
           title: 'Order',
-          tabBarBadge: 3,
+          tabBarBadge: 0,
           tabBarBadgeStyle: {
             backgroundColor: 'red',
             marginTop: -5,
@@ -156,7 +152,7 @@ type TabBarIconProps = {
   active?: boolean;
 }
 // function TabBarIcon(props: TabBarIconProps) {
-const TabBarIcon:FC <TabBarIconProps> = (props) => {
+const TabBarIcon: FC<TabBarIconProps> = (props) => {
   return <View
     style={{
       backgroundColor: props.active ? Colors.purpleLightest : '',
@@ -166,7 +162,8 @@ const TabBarIcon:FC <TabBarIconProps> = (props) => {
       borderRadius: 50,
       // flex:1,
       justifyContent: 'center',
-      alignItems: 'center'}}>
+      alignItems: 'center'
+    }}>
     <FontAwesome size={20} {...props} />
   </View>
 

@@ -11,6 +11,7 @@ const HomeScreen = (props: HomeScreenProps) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.purpleDark }}>
       <View style={styles.container}>
+
         <View style={styles.homeHeader}>
           <View style={styles.boxIcon}>
             <FontAwesome size={35} name="home" color={Colors.purpleLight} />
@@ -28,6 +29,7 @@ const HomeScreen = (props: HomeScreenProps) => {
         <View style={styles.homeContent}>
           <HomeContent/>
         </View>
+        
       </View>
     </SafeAreaView>
   );
@@ -43,13 +45,11 @@ const styles = StyleSheet.create({
   homeHeader: {
     flex: 1,
     paddingHorizontal: 15,
-    // paddingVertical: 20,
     justifyContent: 'center',
   },
   homeContent: {
     flex: 2,
     paddingHorizontal: 15,
-    paddingTop:20,
     backgroundColor: Colors.white,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -65,16 +65,13 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.white,
-    // position: 'absolute',
-    // bottom: 0,
-    // left: 0,
     marginLeft: 20,
 
 
   },
   shareButton: {
     backgroundColor: Colors.orange,
-    height: 60,
+    height: 50,
     width: '35%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -96,5 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     flexDirection: 'row'
-  }
+  },
+
+  
 });

@@ -12,6 +12,7 @@ const Colors = {
 }
 
 const Sizes = {
+  textSmallest:12,
   textSmall:14,
   textMedium:16,
   textLarge:18,
