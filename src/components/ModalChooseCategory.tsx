@@ -1,14 +1,24 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import { Colors, Sizes } from "../constants/Colors";
 
 type Props = {
     visible: boolean,
-    toggleModal: () => void
+    toggleModal: () => void,
+    chooseCategory: (category: any) => void
+    categories: any,
+    categorySelected: any
 }
 
-export const ModalTest = ({ visible, toggleModal }: Props) => {
+// return category selected
+
+export const ModalChooseCategory = ({ visible, toggleModal, categories, chooseCategory, categorySelected }: Props) => {
+
+    const handleChooseCategory = (category: any) => {
+        chooseCategory(category)
+        toggleModal()
+    }
 
     return (
         <Modal
@@ -18,9 +28,10 @@ export const ModalTest = ({ visible, toggleModal }: Props) => {
             onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
                 toggleModal();
-            }}
-        >
+            }} >
             <View style={styles.wrapperModalView}>
+
+
                 <Pressable style={styles.buttonBackground} onPress={toggleModal} />
 
                 <View style={styles.modalView}>
@@ -29,39 +40,30 @@ export const ModalTest = ({ visible, toggleModal }: Props) => {
                         <Text style={styles.textHeader}>Choose category</Text>
                     </View>
 
-                    <View style={styles.wrapperOption}>
-                        <Text style={styles.textOption}>Beauty & Cosmetics</Text>
-                        <MaterialCommunityIcons name="circle-slice-8" size={16} color={Colors.purpleDark} />
-                    </View>
+                    {categories.map((item: any) => {
+                        const icon = categorySelected.id === item.id ? "circle-slice-8" : "circle-outline"
 
-                    <View style={styles.wrapperOption}>
-                        <Text style={styles.textOption}>Fashion & Clothing</Text>
-                        <MaterialCommunityIcons name="circle-outline" size={16} color={Colors.purpleDark} />
-                    </View>
-
+                        return <Pressable key={item.id} style={styles.wrapperOption}
+                            onPress={() => handleChooseCategory(item)}
+                        >
+                            <Text style={styles.textOption}>{item.name}</Text>
+                            <MaterialCommunityIcons name={icon} size={16} color={Colors.purpleDark} />
+                        </Pressable>
+                    })}
 
                     <View style={styles.wrapperButton}>
                         <Pressable style={[styles.button, styles.next]}>
                             <Text>Next</Text>
                         </Pressable>
-                        <Pressable style={[styles.button, styles.cancel]}>
+                        <Pressable style={[styles.button, styles.cancel]} onPress={toggleModal}>
                             <Text>Cancel</Text>
                         </Pressable>
                     </View>
-
-
-                    {/* <Text style={styles.modalText}>Hello World!</Text>
-                    <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={toggleModal}
-                    >
-                        <Text style={styles.textStyle}>Hide Modal</Text>
-                    </Pressable> */}
                 </View>
+
 
             </View>
         </Modal>
-
     );
 };
 
@@ -96,8 +98,6 @@ const styles = StyleSheet.create({
     buttonBackground: {
         flex: 0.52,
         width: '100%',
-        // height
-        // backgroundColor:'green'
     },
     headerModal: {
         justifyContent: 'center',
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignSelf: "flex-end",
         // backgroundColor:"lightblue",
-        paddingBottom:25,
+        paddingBottom: 25,
     },
     next: {
         backgroundColor: Colors.orange,

@@ -18,7 +18,7 @@ import {OrderScreen} from '../screens/order/OrderScreen';
 import {ProductsScreen} from '../screens/products/ProductScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './routes';
-import { CreateStore } from '../screens/CreateStore';
+import { CreateStoreScreen } from '../screens/CreateStoreScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -76,7 +76,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Home"
         // component={HomeScreen}
-        component={CreateStore}
+        component={CreateStoreScreen}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
           title: 'Home',
           headerShown: false,

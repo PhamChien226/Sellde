@@ -1,23 +1,30 @@
 import { MaterialIcons } from '@expo/vector-icons'
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet, Pressable, Modal } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Pressable, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { ModalTest } from '../components/Modal'
+import { ModalChooseCategory } from '../components/ModalChooseCategory'
 import { Colors } from '../constants/Colors'
 
 type Props = {}
+const categories = [
+  { id: 1, name: "Beauty & Cosmetics" },
+  { id: 2, name: "Fashion & Clothing" },
+]
 
-export const CreateStore = (props: Props) => {
-  const [text, onChangeText] = useState("Useless Text");
-  const [selectedLanguage, setSelectedLanguage] = useState();
-  const [modalVisible, setModalVisible] = useState(true);  
+export const CreateStoreScreen = (props: Props) => {
+  // const [text, onChangeText] = useState("Useless Text");
+  // const [selectedLanguage, setSelectedLanguage] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
   const [number, onChangeNumber] = useState();
+  const [categorySelected, setCategorySelected] = useState(categories[0])
+
+
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        {/* <Text>CreateStore</Text> */}
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView style={styles.container}>
 
+        <View style={{ height: 500, backgroundColor: 'lightblue' }}></View>
 
 
         <View style={styles.inputWrapper}>
@@ -34,7 +41,6 @@ export const CreateStore = (props: Props) => {
           />
         </View>
 
-
         <View style={styles.inputWrapper}>
           <Text style={styles.labelInput}>Store details for Buyers</Text>
           <TextInput
@@ -49,64 +55,43 @@ export const CreateStore = (props: Props) => {
         <View style={styles.inputWrapper}>
           <Text style={styles.labelInput}>Business Category</Text>
 
-          {/* <ModalWrapper visible={modalVisible} style={}> */}
-
-          <Pressable style={({ pressed }) => [
-            { opacity: pressed ? 0.5 : 1.0 }, styles.button
-          ]}
+          <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }, styles.button]}
             onPress={() => setModalVisible(!modalVisible)}
           >
-
-            <Text>Beauty & Cosmetics</Text>
+            <Text style={styles.textPlaceHolder}>{categorySelected.name}</Text>
             <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.grey} />
-
           </Pressable>
+        </View>
 
-
-
-
-
+        <View style={styles.inputWrapper}>
+          <Text style={styles.labelInput}>Business Location</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={() => onChangeNumber}
+            value={number}
+            placeholder="Location"
+            placeholderTextColor={Colors.grey}
+          />
         </View>
 
 
-
-        {/* <Modal
-          // animationType="slide"
-          // transparent={true}
+        <ModalChooseCategory
           visible={modalVisible}
-          onRequestClose={() => {
-            // Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-
-          
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
-              <Pressable
-                style={[styles.button2, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal> */}
-
-
-
-
-        <ModalTest visible={modalVisible} toggleModal={() => setModalVisible(!modalVisible)} />
-      </View>
-
+          toggleModal={() => setModalVisible(!modalVisible)}
+          categories={categories}
+          chooseCategory={(item) => setCategorySelected(item)}
+          categorySelected={categorySelected}
+        />
+      </ScrollView>
     </SafeAreaView >
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 20,
+    // backgroundColor:'red'
   },
   inputWrapper: {
     marginBottom: 15,
@@ -132,6 +117,11 @@ const styles = StyleSheet.create({
     // width:'90%'
   },
 
+  textPlaceHolder: {
+    color: Colors.grey,
+
+  },
+
 
   button: {
     borderBottomColor: Colors.greyBorderColor,
@@ -151,54 +141,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
-  buttonHide: {
-
-  },
-
-
-
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  button2: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  }
-
-
 })
 
