@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     },
     sectionTime: {
         fontSize: Sizes.textSmall,
-        color: Colors.gray,
+        color: Colors.grey,
     },
     sectionTimeContainer: {
         paddingBottom: 3,
         borderBottomWidth: 1,
-        borderBottomColor: Colors.gray
+        borderBottomColor: Colors.grey
     },
 
     boxOverview: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: Dimensions.get('window').width * 0.55,
         padding: 20,
-        borderColor: Colors.gray,
+        borderColor: Colors.grey,
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         marginRight: 20,
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: Sizes.textLarge,
-        color: Colors.gray,
+        color: Colors.grey,
         fontWeight: '100'
 
     }

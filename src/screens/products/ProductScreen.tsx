@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors, Sizes } from '../../constants/Colors';
+import { ListTabsProducts } from './ListTabsProduct'
 
 interface ProductsScreenProps { }
 
@@ -25,9 +26,9 @@ export const ProductsScreen = (props: ProductsScreenProps) => {
           </View>
         </View>
 
-        <View style={styles.homeContent} />
-
-
+        <View style={styles.homeContent}>
+          <ListTabsProducts />
+        </View>
       </View>
     </SafeAreaView>
   );

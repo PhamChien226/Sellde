@@ -36,7 +36,7 @@ export const ButtonBar = (props: ButtonBarProps) => {
         // onValueChange={()=> }
         // value={false}
         />
-        : <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.gray} />
+        : <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.grey} />
       }
 
     </Pressable>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
 
   sectionSmallText: {
-    color: Colors.gray,
+    color: Colors.grey,
     fontSize: Sizes.textSmallest,
   }
 

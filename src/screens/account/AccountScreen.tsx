@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
 
   sectionSmallText: {
-    color: Colors.gray,
+    color: Colors.grey,
     fontSize: Sizes.textSmallest,
   }
 

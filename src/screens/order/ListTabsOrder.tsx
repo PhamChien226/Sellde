@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Text, View,  useWindowDimensions } from 'react-native';
+import { Text, View, useWindowDimensions } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { TabBarTabView } from '../../components/TabBarTabView'
 
 
-const renderScene = ({ route, jumpTo }) => {
+const renderScene = ({ route }: any) => {
 
   switch (route.key) {
     case 'all':
@@ -27,7 +27,8 @@ export const ListTabsView = () => {
     { key: 'delivered', title: 'Delivered (0)' },
   ];
 
-  const handleOnPressTab = (index) => {
+  const handleOnPressTab = (index: number) => {
+    console.warn("onPress")
     setIndex(index);
   }
 

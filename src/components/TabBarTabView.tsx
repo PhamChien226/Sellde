@@ -6,7 +6,7 @@ import { Colors, Sizes } from '../constants/Colors';
 
 type TabBarTabViewProps = {
   routes?: any,
-  handleOnPressTab: (index:number) => {},
+  handleOnPressTab: (index:number) => void,
   tabActive: number,
 
 }

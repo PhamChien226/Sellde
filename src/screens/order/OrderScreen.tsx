@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors, Sizes } from '../../constants/Colors';
-import { ListTabsView } from '../products/ListTabsView';
+import { ListTabsView } from './ListTabsOrder';
 
 
 
@@ -37,7 +37,7 @@ export const OrderScreen = () => {
               onChangeText={() => setInput}
               value={input}
               placeholder="Oder ID, mobile number or name..."
-              placeholderTextColor={Colors.gray}
+              placeholderTextColor={Colors.grey}
             />
           </View>
           
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     marginVertical: 20,
     padding: 10,
-    borderColor: Colors.gray,
+    borderColor: Colors.grey,
     borderWidth: 1,
     borderRadius: 5,
 
