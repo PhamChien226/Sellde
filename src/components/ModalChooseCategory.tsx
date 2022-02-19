@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
-import { Colors, Sizes } from "../constants/Colors";
+import { Colors, Sizes } from "../constants/constant";
 
 type Props = {
     visible: boolean,
@@ -51,7 +51,7 @@ export const ModalChooseCategory = ({ visible, toggleModal, categories, chooseCa
                     })}
 
                     <View style={styles.wrapperButton}>
-                        <Pressable style={[styles.button, styles.next]}>
+                        <Pressable style={[styles.button, styles.next]} onPress={() => console.warn("onPress")}>
                             <Text>Next</Text>
                         </Pressable>
                         <Pressable style={[styles.button, styles.cancel]} onPress={toggleModal}>

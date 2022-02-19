@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
-import { Colors } from '../constants/Colors'
+import { Colors } from '../constants/constant'
 
 export const withLayout = (Component) => (props) => {
     return (

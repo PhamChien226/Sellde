@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 import { Text, View, StyleSheet,  Dimensions } from 'react-native';
-import { Colors, Sizes } from '../constants/Colors';
+import { Colors, Sizes } from '../constants/constant';
 
 type ButtonBarProps = {
   key?: number,

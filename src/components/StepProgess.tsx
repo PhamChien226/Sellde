@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import StepIndicator from "react-native-step-indicator";
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { Colors, Sizes } from '../constants/Colors';
+import { Colors, Sizes } from '../constants/constant';
 
 type Props = {}
 

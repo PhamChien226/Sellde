@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ButtonBar } from '../../components/ButtonBar';
-import { Colors, Sizes } from '../../constants/Colors';
+import { Colors, Sizes } from '../../constants/constant';
 
 interface AccountScreenProps { }
 

@@ -2,7 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors, Sizes } from '../../constants/Colors';
+import { Colors, Sizes } from '../../constants/constant';
 import { ListTabsProducts } from './ListTabsProduct'
 
 interface ProductsScreenProps { }

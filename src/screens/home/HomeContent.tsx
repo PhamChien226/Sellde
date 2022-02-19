@@ -2,7 +2,7 @@ import { Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons
 import React from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import { BoxOverview } from '../../components/BoxOverview';
-import { Colors, Sizes } from '../../constants/Colors';
+import { Colors, Sizes } from '../../constants/constant';
 
 
 const data: any = [

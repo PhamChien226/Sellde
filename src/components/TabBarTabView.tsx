@@ -2,7 +2,7 @@ import { Feather, MaterialIcons } from '@expo/vector-icons';
 import * as React from 'react';
 import { ReactElement } from 'react';
 import { Text, View, StyleSheet, Switch, Pressable, Dimensions, ScrollView } from 'react-native';
-import { Colors, Sizes } from '../constants/Colors';
+import { Colors, Sizes } from '../constants/constant';
 
 type TabBarTabViewProps = {
   routes?: any,

@@ -11,7 +11,7 @@ import * as React from 'react';
 import { FC } from 'react';
 import { ColorSchemeName,  View } from 'react-native';
 
-import { Colors } from '../constants/Colors';
+import { Colors } from '../constants/constant';
 import {AccountScreen} from '../screens/account/AccountScreen';
 import {HomeScreen} from '../screens/home/HomeScreen';
 import {OrderScreen} from '../screens/order/OrderScreen';

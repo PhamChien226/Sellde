@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { withLayout } from '../../components/withLayout';
-import { Colors, Sizes } from '../../constants/Colors';
+import { Colors, Sizes } from '../../constants/constant';
 import {HomeContent} from './HomeContent';
 
 interface HomeScreenProps { }

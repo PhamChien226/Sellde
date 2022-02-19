@@ -5,9 +5,10 @@ import { AntDesign, Feather, MaterialIcons } from '@expo/vector-icons'
 
 import { ModalChooseCategory } from '../components/ModalChooseCategory'
 import { StepProgess } from '../components/StepProgess'
-import { Colors } from '../constants/Colors'
+import { Colors } from '../constants/constant'
 import { pickImageFromCamera, pickImageFromGallery } from './imagePicker';
 import { ModalPickImage } from '../components/ModalPickImage'
+import { types } from '@babel/core'
 
 
 const categories = [
@@ -16,14 +17,27 @@ const categories = [
 ]
 
 
+const data = {
+  uriImage: "",
+  businessName: "",
+  storeDetail: "",
+  businessCategory: "",
+  businessLocation: ""
+}
+
+
 const widthScreen = Dimensions.get('window').width;
 export const CreateStoreScreen = () => {
+  const [businessName,setBusinessName] = useState<string>()
+  const [storeDetail, setStoreDetail] = useState<string>()
+  const [businessLocation, setBusinessLocation] = useState<string>()
+
+
   // const [text, onChangeText] = useState("Useless Text");
   // const [selectedLanguage, setSelectedLanguage] = useState();
   const [modalCategoryVisible, setModalCategoryVisible] = useState(false);
   const [modalPickImageVisible, setModalPickImageVisible] = useState(false);
-  const [number, onChangeNumber] = useState();
-  const [categorySelected, setCategorySelected] = useState(categories[0])
+  const [businessCategory,setBusinessCategory] = useState(categories[0])
 
   const onPressPickImage = () => {
     setModalPickImageVisible(!modalPickImageVisible)
@@ -43,6 +57,91 @@ export const CreateStoreScreen = () => {
     const uriImage = await pickImageFromCamera()
     console.warn("uriImage", uriImage)
   }
+
+  const handleSubmit = () => {
+    // verify();
+
+    console.warn("!businessName",businessName,!businessName)
+
+    if(verify(businessName)) {
+      console.warn("error")
+      return
+    }
+
+    const newData = {
+      ...data,
+      businessName,
+      storeDetail,
+      businessLocation,
+      businessCategory,
+    }
+
+
+    console.warn('new Data', newData)
+  }
+
+  const verify = (arg:any) => {
+    if(!arg) return true
+
+    return false
+  }
+
+
+
+  /**
+   * my idea is
+   * - when you submit 
+   * - we vetify and we save info to reducer
+   * 
+   * 
+   * 
+   * 
+   * save text
+   * save img
+   * save option
+   * 
+   * maybe verify
+   * 
+   * add next button
+   * 
+   * i want to use custom hook
+   *  to separate logic and ui
+   * 
+   * it's st like
+   * pure component
+   * just take st and return st
+   * 
+   * create store reutnr store infomation
+   * 
+   * const [] = useToggleModal
+   * => bull shit
+   * 
+   * 
+   * i think we create a array
+   * so we can save
+   * yeah
+   * that's right
+   * 
+   * 
+   * it's the gobal property
+   * so maybe we can add some redux or st like that
+   * 
+   * like
+   * i'm in homeScreen and i want store's Avatar
+   * 
+   * ok sure
+   * great
+   * 
+   * 
+   * first we use context
+   * and then we use redux
+   * just
+   * hone our skill
+   * 
+   */
+
+
+  console.warn("businessName",businessName)
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -65,8 +164,8 @@ export const CreateStoreScreen = () => {
           </View>
           <TextInput
             style={styles.input}
-            onChangeText={() => onChangeNumber}
-            value={number}
+            onChangeText={setBusinessName}
+            value={businessName}
             placeholder="Your Store name visible to Buyers"
             placeholderTextColor={Colors.grey}
           />
@@ -76,8 +175,8 @@ export const CreateStoreScreen = () => {
           <Text style={styles.labelInput}>Store details for Buyers</Text>
           <TextInput
             style={styles.input}
-            onChangeText={() => onChangeNumber}
-            value={number}
+            onChangeText={setStoreDetail}
+            value={storeDetail}
             placeholder="Details important for buyers to know about you"
             placeholderTextColor={Colors.grey}
           />
@@ -89,7 +188,7 @@ export const CreateStoreScreen = () => {
           <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }, styles.button]}
             onPress={() => setModalCategoryVisible(!modalCategoryVisible)}
           >
-            <Text style={styles.textPlaceHolder}>{categorySelected.name}</Text>
+            <Text style={styles.textPlaceHolder}>{businessCategory.name}</Text>
             <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.grey} />
           </Pressable>
         </View>
@@ -98,28 +197,40 @@ export const CreateStoreScreen = () => {
           <Text style={styles.labelInput}>Business Location</Text>
           <TextInput
             style={styles.input}
-            onChangeText={() => onChangeNumber}
-            value={number}
+            onChangeText={setBusinessLocation}
+            value={businessLocation}
             placeholder="Location"
             placeholderTextColor={Colors.grey}
           />
         </View>
 
 
-        <ModalChooseCategory
-          visible={modalCategoryVisible}
-          toggleModal={() => setModalCategoryVisible(!modalCategoryVisible)}
-          categories={categories}
-          chooseCategory={(item) => setCategorySelected(item)}
-          categorySelected={categorySelected}
-        />
 
-        <ModalPickImage visible={modalPickImageVisible}
-          toggleModal={() => setModalPickImageVisible(!modalPickImageVisible)}
-          onSelectGallery={handleSelectGallery}
-          onTakePicture={handleTakePicture}
-        />
+
+
       </ScrollView>
+
+      <View style={styles.wrapperSummit}>
+        <Pressable onPress={handleSubmit}
+          style={styles.submitButton}
+        >
+          <Text style={styles.submitText}>Next</Text>
+        </Pressable>
+      </View>
+
+      <ModalChooseCategory
+        visible={modalCategoryVisible}
+        toggleModal={() => setModalCategoryVisible(!modalCategoryVisible)}
+        categories={categories}
+        chooseCategory={setBusinessCategory}
+        categorySelected={businessCategory}
+      />
+
+      <ModalPickImage visible={modalPickImageVisible}
+        toggleModal={() => setModalPickImageVisible(!modalPickImageVisible)}
+        onSelectGallery={handleSelectGallery}
+        onTakePicture={handleTakePicture}
+      />
     </SafeAreaView >
   )
 }
@@ -145,6 +256,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     marginBottom: 10,
   },
+
   input: {
     paddingVertical: 10,
     borderBottomColor: Colors.greyBorderColor,
@@ -153,7 +265,6 @@ const styles = StyleSheet.create({
 
   textPlaceHolder: {
     color: Colors.grey,
-
   },
 
 
@@ -196,7 +307,24 @@ const styles = StyleSheet.create({
     right: -9,
     backgroundColor: Colors.white,
     borderRadius: 50
-  }
+  },
 
+  wrapperSummit: {
+    backgroundColor: Colors.white,
+    justifyContent: 'center',
+    padding: 20
+  },
+  submitButton: {
+    height: 50,
+    backgroundColor: Colors.greyBorderColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+
+  submitText: {
+    color: Colors.greyLighter,
+    fontWeight: 'bold'
+  }
 })
 
