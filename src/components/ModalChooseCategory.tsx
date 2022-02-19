@@ -11,8 +11,7 @@ type Props = {
     categorySelected: any
 }
 
-// return category selected
-
+// return selected category
 export const ModalChooseCategory = ({ visible, toggleModal, categories, chooseCategory, categorySelected }: Props) => {
 
     const handleChooseCategory = (category: any) => {
@@ -137,13 +136,11 @@ const styles = StyleSheet.create({
 
     wrapperButton: {
         flexDirection: 'row',
-        // marginBottom: 25,
         flex: 1,
         width: '100%',
         alignItems: 'flex-end',
         justifyContent: 'space-between',
         alignSelf: "flex-end",
-        // backgroundColor:"lightblue",
         paddingBottom: 25,
     },
     next: {
@@ -151,7 +148,6 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     cancel: {
-        // color: Colors.grey
     },
 
 
@@ -161,7 +157,6 @@ const styles = StyleSheet.create({
         borderColor: Colors.greyBorderColor,
         borderRadius: 5,
         paddingVertical: 15,
-        // padding
         justifyContent: 'center',
         alignItems: 'center'
     },

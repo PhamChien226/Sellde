@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Pressable, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ModalChooseCategory } from '../components/ModalChooseCategory'
+import { StepProgess } from '../components/StepProgess'
 import { Colors } from '../constants/Colors'
 
 type Props = {}
@@ -24,7 +25,17 @@ export const CreateStoreScreen = (props: Props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.container}>
 
-        <View style={{ height: 500, backgroundColor: 'lightblue' }}></View>
+        {/* <View>
+          <View></View>
+        </View> */}
+
+
+
+        <View style={{ height: 500, backgroundColor: Colors.white, paddingTop: 30 }}>
+          <StepProgess />
+
+          <Text>Image piker</Text>
+        </View>
 
 
         <View style={styles.inputWrapper}>
@@ -91,7 +102,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    // backgroundColor:'red'
   },
   inputWrapper: {
     marginBottom: 15,
@@ -110,11 +120,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
-    // backgroundColor: "lightblue",
     paddingVertical: 10,
     borderBottomColor: Colors.greyBorderColor,
     borderBottomWidth: 1,
-    // width:'90%'
   },
 
   textPlaceHolder: {

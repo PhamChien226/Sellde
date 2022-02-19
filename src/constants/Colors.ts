@@ -3,6 +3,7 @@ const tintColorDark = '#fff';
 
 
 const Colors = {
+  black:"#000",
   white: 'white',
   purpleDark: "#4642D4",
   purpleLight: "#3F51B5",
