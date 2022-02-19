@@ -25,9 +25,13 @@ const customStyles = {
     separatorFinishedColor: Colors.purpleDark,
     separatorUnFinishedColor: Colors.grey,
 
-    stepIndicatorFinishedColor: Colors.white,
-    stepIndicatorUnFinishedColor: Colors.white,
-    stepIndicatorCurrentColor: Colors.white,
+    // stepIndicatorFinishedColor: Colors.white,
+    // stepIndicatorUnFinishedColor: Colors.white,
+    // stepIndicatorCurrentColor: Colors.white,
+
+    stepIndicatorFinishedColor: 'transparent',
+    stepIndicatorUnFinishedColor: 'transparent',
+    stepIndicatorCurrentColor: 'transparent',
 
     labelColor: Colors.grey,
     labelSize: Sizes.textSmall,

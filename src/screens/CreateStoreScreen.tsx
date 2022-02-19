@@ -1,42 +1,62 @@
-import { MaterialIcons } from '@expo/vector-icons'
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet, Pressable, ScrollView } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Pressable, ScrollView, Dimensions } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { AntDesign, Feather, MaterialIcons } from '@expo/vector-icons'
+
 import { ModalChooseCategory } from '../components/ModalChooseCategory'
 import { StepProgess } from '../components/StepProgess'
 import { Colors } from '../constants/Colors'
+import { pickImageFromCamera, pickImageFromGallery } from './imagePicker';
+import { ModalPickImage } from '../components/ModalPickImage'
 
-type Props = {}
+
 const categories = [
   { id: 1, name: "Beauty & Cosmetics" },
   { id: 2, name: "Fashion & Clothing" },
 ]
 
-export const CreateStoreScreen = (props: Props) => {
+
+const widthScreen = Dimensions.get('window').width;
+export const CreateStoreScreen = () => {
   // const [text, onChangeText] = useState("Useless Text");
   // const [selectedLanguage, setSelectedLanguage] = useState();
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalCategoryVisible, setModalCategoryVisible] = useState(false);
+  const [modalPickImageVisible, setModalPickImageVisible] = useState(false);
   const [number, onChangeNumber] = useState();
   const [categorySelected, setCategorySelected] = useState(categories[0])
 
+  const onPressPickImage = () => {
+    setModalPickImageVisible(!modalPickImageVisible)
+  }
 
+  const handleSelectGallery = async () => {
+    setModalPickImageVisible(!modalPickImageVisible)
+
+    const uriImage = await pickImageFromGallery()
+    console.warn("uriImage", uriImage)
+
+  }
+
+  const handleTakePicture = async () => {
+    setModalPickImageVisible(!modalPickImageVisible)
+
+    const uriImage = await pickImageFromCamera()
+    console.warn("uriImage", uriImage)
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.container}>
 
-        {/* <View>
-          <View></View>
-        </View> */}
+        <StepProgess />
 
+        <Pressable onPress={onPressPickImage} style={styles.buttonImagePicker}>
+          <Feather name="camera" size={24} color={Colors.grey} />
 
-
-        <View style={{ height: 500, backgroundColor: Colors.white, paddingTop: 30 }}>
-          <StepProgess />
-
-          <Text>Image piker</Text>
-        </View>
-
+          <Pressable style={styles.wrapperIconPlus} onPress={onPressPickImage}>
+            <AntDesign name="pluscircle" size={18} color={Colors.orange} />
+          </Pressable>
+        </Pressable>
 
         <View style={styles.inputWrapper}>
           <View style={styles.labelWrapper}>
@@ -67,7 +87,7 @@ export const CreateStoreScreen = (props: Props) => {
           <Text style={styles.labelInput}>Business Category</Text>
 
           <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }, styles.button]}
-            onPress={() => setModalVisible(!modalVisible)}
+            onPress={() => setModalCategoryVisible(!modalCategoryVisible)}
           >
             <Text style={styles.textPlaceHolder}>{categorySelected.name}</Text>
             <MaterialIcons name="keyboard-arrow-right" size={26} color={Colors.grey} />
@@ -87,11 +107,17 @@ export const CreateStoreScreen = (props: Props) => {
 
 
         <ModalChooseCategory
-          visible={modalVisible}
-          toggleModal={() => setModalVisible(!modalVisible)}
+          visible={modalCategoryVisible}
+          toggleModal={() => setModalCategoryVisible(!modalCategoryVisible)}
           categories={categories}
           chooseCategory={(item) => setCategorySelected(item)}
           categorySelected={categorySelected}
+        />
+
+        <ModalPickImage visible={modalPickImageVisible}
+          toggleModal={() => setModalPickImageVisible(!modalPickImageVisible)}
+          onSelectGallery={handleSelectGallery}
+          onTakePicture={handleTakePicture}
         />
       </ScrollView>
     </SafeAreaView >
@@ -149,5 +175,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
+
+
+  buttonImagePicker: {
+    width: widthScreen * 0.4,
+    height: widthScreen * 0.4,
+    marginVertical: 30,
+    borderColor: Colors.grey,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderStyle: 'dashed',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
+  },
+
+  wrapperIconPlus: {
+    position: 'absolute',
+    bottom: -5,
+    right: -9,
+    backgroundColor: Colors.white,
+    borderRadius: 50
+  }
+
 })
 
