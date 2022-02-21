@@ -3,12 +3,12 @@ import { View, Text, TextInput, StyleSheet, Pressable, ScrollView, Dimensions } 
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AntDesign, Feather, MaterialIcons } from '@expo/vector-icons'
 
-import { ModalChooseCategory } from '../components/ModalChooseCategory'
-import { StepProgess } from '../components/StepProgess'
-import { Colors } from '../constants/constant'
+import { ModalChooseCategory } from './components/ModalChooseCategory'
+import { StepProgess } from './components/StepProgess'
+import { Colors } from './constants/constant'
 import { pickImageFromCamera, pickImageFromGallery } from './imagePicker';
-import { ModalPickImage } from '../components/ModalPickImage'
-import { types } from '@babel/core'
+import { ModalPickImage } from './components/ModalPickImage'
+import { useAppContext } from './App.Provider'
 
 
 const categories = [
@@ -28,16 +28,17 @@ const data = {
 
 const widthScreen = Dimensions.get('window').width;
 export const CreateStoreScreen = () => {
-  const [businessName,setBusinessName] = useState<string>()
+  const [businessName, setBusinessName] = useState<string>()
   const [storeDetail, setStoreDetail] = useState<string>()
   const [businessLocation, setBusinessLocation] = useState<string>()
-
-
-  // const [text, onChangeText] = useState("Useless Text");
-  // const [selectedLanguage, setSelectedLanguage] = useState();
+  const [businessCategory, setBusinessCategory] = useState(categories[0])
+  
+  const [isAbleSubmit, setIsAbleSubmit] = useState(false)
   const [modalCategoryVisible, setModalCategoryVisible] = useState(false);
   const [modalPickImageVisible, setModalPickImageVisible] = useState(false);
-  const [businessCategory,setBusinessCategory] = useState(categories[0])
+
+  const appContext = useAppContext();
+
 
   const onPressPickImage = () => {
     setModalPickImageVisible(!modalPickImageVisible)
@@ -47,24 +48,17 @@ export const CreateStoreScreen = () => {
     setModalPickImageVisible(!modalPickImageVisible)
 
     const uriImage = await pickImageFromGallery()
-    console.warn("uriImage", uriImage)
-
   }
 
   const handleTakePicture = async () => {
     setModalPickImageVisible(!modalPickImageVisible)
 
     const uriImage = await pickImageFromCamera()
-    console.warn("uriImage", uriImage)
   }
 
   const handleSubmit = () => {
-    // verify();
-
-    console.warn("!businessName",businessName,!businessName)
-
-    if(verify(businessName)) {
-      console.warn("error")
+    if (!verify(businessName)) {
+      // console.warn("error")
       return
     }
 
@@ -80,10 +74,20 @@ export const CreateStoreScreen = () => {
     console.warn('new Data', newData)
   }
 
-  const verify = (arg:any) => {
-    if(!arg) return true
+  const verify = (arg: any) => {
+    if (!arg) return false
 
-    return false
+    return true
+  }
+
+
+  const handleChangeBusinessName = (text: any) => {
+    if (!verify(text)) {
+      setIsAbleSubmit(false)
+    } else {
+      if (!isAbleSubmit) setIsAbleSubmit(true)
+      setBusinessName(text)
+    }
   }
 
 
@@ -92,6 +96,8 @@ export const CreateStoreScreen = () => {
    * my idea is
    * - when you submit 
    * - we vetify and we save info to reducer
+   * 
+   * add isAbleSubmit
    * 
    * 
    * 
@@ -139,9 +145,7 @@ export const CreateStoreScreen = () => {
    * hone our skill
    * 
    */
-
-
-  console.warn("businessName",businessName)
+console.warn("appContext",appContext)
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -164,7 +168,7 @@ export const CreateStoreScreen = () => {
           </View>
           <TextInput
             style={styles.input}
-            onChangeText={setBusinessName}
+            onChangeText={handleChangeBusinessName}
             value={businessName}
             placeholder="Your Store name visible to Buyers"
             placeholderTextColor={Colors.grey}
@@ -203,18 +207,17 @@ export const CreateStoreScreen = () => {
             placeholderTextColor={Colors.grey}
           />
         </View>
-
-
-
-
-
       </ScrollView>
 
+
       <View style={styles.wrapperSummit}>
-        <Pressable onPress={handleSubmit}
-          style={styles.submitButton}
+        <Pressable onPress={handleSubmit} disabled={!isAbleSubmit}
+          style={[styles.submitButton,
+          { backgroundColor: isAbleSubmit ? Colors.orange : Colors.greyBorderColor }]}
         >
-          <Text style={styles.submitText}>Next</Text>
+          <Text style={[styles.submitText, { color: isAbleSubmit ? Colors.white : Colors.greyLighter }]}>
+            Next
+          </Text>
         </Pressable>
       </View>
 
@@ -316,7 +319,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     height: 50,
-    backgroundColor: Colors.greyBorderColor,
+    // backgroundColor: Colors.greyBorderColor,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,

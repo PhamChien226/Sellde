@@ -33,7 +33,7 @@ export type RootTabParamList = {
   Products: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
+// export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
+//   BottomTabScreenProps<RootTabParamList, Screen>,
+//   NativeStackScreenProps<RootStackParamList>
+// >;
